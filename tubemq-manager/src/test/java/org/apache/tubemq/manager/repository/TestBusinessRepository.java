@@ -21,13 +21,35 @@ public class TestBusinessRepository {
     @Test
     public void whenFindByNameThenReturnBusiness() {
         BusinessEntry businessEntry = new BusinessEntry();
-        businessEntry.setBusinessName("alex");
-
+        String demoName = "alex";
+        businessEntry.setBusinessName(demoName);
+        businessEntry.setSchemaName(demoName);
+        businessEntry.setTopic(demoName);
+        businessEntry.setEncodingType(demoName);
+        businessEntry.setUsername(demoName);
+        businessEntry.setPasswd(demoName);
         entityManager.persist(businessEntry);
         entityManager.flush();
 
-        BusinessEntry businessEntry1 = businessRepository.findByName("alex");
+        BusinessEntry businessEntry1 = businessRepository.findByBusinessName("alex");
         assertThat(businessEntry1.getBusinessName()).isEqualTo(businessEntry.getBusinessName());
     }
 
+    @Test
+    public void checkValidation() throws Exception {
+        BusinessEntry businessEntry = new BusinessEntry();
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < 512; i ++) {
+            builder.append("a");
+        }
+        businessEntry.setBusinessName(builder.toString());
+        try {
+
+            entityManager.persist(businessEntry);
+            entityManager.flush();
+        } catch (Exception ex) {
+            assertThat(ex.getMessage()).contains("must not be null", "size must be between");
+        }
+    }
 }

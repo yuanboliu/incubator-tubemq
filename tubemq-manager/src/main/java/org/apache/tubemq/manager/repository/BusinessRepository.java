@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BusinessRepository extends JpaRepository<BusinessEntry, Long> {
-   public BusinessEntry findByName(String name);
+   public BusinessEntry findByBusinessName(String businessName);
 }

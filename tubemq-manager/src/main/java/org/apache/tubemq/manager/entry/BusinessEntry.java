@@ -100,11 +100,59 @@ public class BusinessEntry {
         return businessId;
     }
 
+    public String getEncodingType() {
+        return encodingType;
+    }
+
+    public void setEncodingType(String encodingType) {
+        this.encodingType = encodingType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getSchemaName() {
+        return schemaName;
+    }
+
+    public void setSchemaName(String schemaName) {
+        this.schemaName = schemaName;
+    }
+
     public String getBusinessName() {
         return businessName;
     }
 
     public void setBusinessName(String name) {
         this.businessName = name;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
     }
 }
