@@ -21,12 +21,13 @@ public class TestBusinessRepository {
     @Test
     public void whenFindByNameThenReturnBusiness() {
         BusinessEntry businessEntry = new BusinessEntry();
-        businessEntry.setName("alex");
+        businessEntry.setBusinessName("alex");
 
         entityManager.persist(businessEntry);
         entityManager.flush();
 
         BusinessEntry businessEntry1 = businessRepository.findByName("alex");
-        assertThat(businessEntry1.getName()).isEqualTo(businessEntry.getName());
+        assertThat(businessEntry1.getBusinessName()).isEqualTo(businessEntry.getBusinessName());
     }
+
 }
