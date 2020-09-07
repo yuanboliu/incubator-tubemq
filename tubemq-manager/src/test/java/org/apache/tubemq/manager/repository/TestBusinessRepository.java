@@ -45,7 +45,6 @@ public class TestBusinessRepository {
         }
         businessEntry.setBusinessName(builder.toString());
         try {
-
             entityManager.persist(businessEntry);
             entityManager.flush();
         } catch (Exception ex) {
