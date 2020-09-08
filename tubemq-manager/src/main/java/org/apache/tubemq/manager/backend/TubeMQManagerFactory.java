@@ -22,7 +22,8 @@ public class TubeMQManagerFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = new Thread(r, threadType + "-running-thread-" + mThreadNum.getAndIncrement());
+        Thread t = new Thread(r, threadType + "-running-thread-" +
+                mThreadNum.getAndIncrement());
         LOGGER.info("{} created", t.getName());
         return t;
     }
