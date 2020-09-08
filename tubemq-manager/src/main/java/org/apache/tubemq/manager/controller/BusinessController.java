@@ -1,6 +1,7 @@
 package org.apache.tubemq.manager.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,18 @@ public class BusinessController {
      */
     @GetMapping("/checkStatus")
     public BusinessResult getBusiness() throws Exception {
+        return new BusinessResult();
+    }
+
+    /**
+     * get business by id.
+     *
+     * @param businessId business id
+     * @return BusinessResult
+     * @throws Exception
+     */
+    @GetMapping("/get/{id}")
+    public BusinessResult getBusinessByID(@PathVariable Long businessId) throws Exception {
         return new BusinessResult();
     }
 }
