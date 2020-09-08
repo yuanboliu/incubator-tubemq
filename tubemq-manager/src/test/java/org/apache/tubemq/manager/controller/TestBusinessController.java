@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -30,5 +31,9 @@ public class TestBusinessController {
         request = get("/business");
         mvc.perform(request)
                 .andExpect(status().isNotFound());
+
+
+        request = post("/business/add");
+        mvc.perform(request).andExpect(status().isOk());
     }
 }

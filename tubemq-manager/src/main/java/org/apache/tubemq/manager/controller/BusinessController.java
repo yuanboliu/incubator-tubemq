@@ -1,5 +1,11 @@
 package org.apache.tubemq.manager.controller;
 
+import java.util.List;
+import java.util.Optional;
+import org.apache.tubemq.manager.entry.BusinessEntry;
+import org.apache.tubemq.manager.repository.BusinessRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/business")
 public class BusinessController {
 
+    @Autowired
+    private BusinessRepository businessRepository;
+
     /**
      * add new business.
      *
@@ -17,8 +26,8 @@ public class BusinessController {
      * @throws Exception - exception
      */
     @PostMapping("/add")
-    public BusinessResult addBusiness() throws Exception {
-        return new BusinessResult();
+    public ResponseEntity<?> addBusiness() throws Exception {
+        return ResponseEntity.ok().build();
     }
 
     /**
@@ -28,19 +37,25 @@ public class BusinessController {
      * @throws Exception - exception
      */
     @GetMapping("/checkStatus")
-    public BusinessResult getBusiness() throws Exception {
-        return new BusinessResult();
+    public ResponseEntity<List<BusinessEntry>> getBusiness() throws Exception {
+        return ResponseEntity.ok().build();
     }
 
     /**
      * get business by id.
      *
-     * @param businessId business id
+     * @param id business id
      * @return BusinessResult
      * @throws Exception
      */
     @GetMapping("/get/{id}")
-    public BusinessResult getBusinessByID(@PathVariable Long businessId) throws Exception {
-        return new BusinessResult();
+    public ResponseEntity<BusinessEntry> getBusinessByID(
+            @PathVariable Long id) throws Exception {
+        Optional<BusinessEntry> businessEntry = businessRepository.findById(id);
+        if (businessEntry.isPresent()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
